@@ -43,20 +43,23 @@
             window.addEventListener("load", updateNetState);
 
             // TODO: Declare event listeners for the online state change
-
+            window.addEventListener("online", updateNetState);
+            window.addEventListener("offline", updateNetState);
 
             // Update the UI with the current network state and information
             function updateNetState(evt) {
                 const statusElem = document.getElementById("netState");
                 // TODO: get the online status
-
+                let isOnline = navigator.onLine;
                 
                 // TODO: update the online status
-
+                statusElem.className = isOnline ? "onlineState" : "offlineState";
+                statusElem.innerText = isOnline ? "ONLINE" : "OFFLINE";
 
                 // TODO: check the connection type with the Network Information API
                 if (navigator.connection) {
-
+                    connType = navigator.connection;
+                    statusElem.innerText += " Effective type: ", connType.effectiveType + ", Downlink speed: " + connType.downlink + "MB/s" + ". Estimated round-trip time is: " + connType.rtt + "ms"
                 }
             }
         </script>

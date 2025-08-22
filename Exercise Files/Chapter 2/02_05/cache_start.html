@@ -27,21 +27,37 @@
 
                 document.getElementById('btnClear').addEventListener("click", function () {
                     // TODO: clear the current cache content
-
+                    caches.delete('my-data-cache').then(function (result) {
+                        console.log(result ? "cache deleted" : "error");
+                    }) 
                 });
 
                 function getJSONData(url) {
                     // TODO: First check the cache to see if we already have the data
+                    if ('caches' in window) {
+                        window.caches.open('my-data-cache').then(function(cache) {
+                            cache.match(url).then(function(result) {
+                                if (result === undefined) {
+                                    console.log("not found in cache: ", url);
+                                    // fetch the request normally
+                                    fetch(url).then(function (result) {
+                                        // TODO: Make a copy of the response since it can only be read once
+                                        let clonedresp = result.clone();
 
-                    // fetch the request normally
-                    fetch(url).then(function (result) {
-                        // TODO: Make a copy of the response since it can only be read once
-
-                        // TODO: Add the result to the cache
-                        result.text().then(function(data){
-                            console.log(data);
+                                        // TODO: Add the result to the cache
+                                        cache.put(url, result);
+                                        clonedresp.text().then(function(data){
+                                            console.log(data);
+                                        })
+                                    });
+                                } else {
+                                    result.text().then(function(text) {
+                                        console.log("cache hit: ", url, text);
+                                    })
+                                }
+                            })
                         })
-                    });
+                    }
                 };
             })
         </script>

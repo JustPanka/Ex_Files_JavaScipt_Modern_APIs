@@ -39,10 +39,12 @@
                 outputDiv = document.getElementById("targetElem");
 
                 // TODO: record the initial visibility state of the tab
-
+                outputDiv.innerHTML += "<p>Visibility state: " + document.visibilityState + "</p>";
 
                 // TODO: set up event listeners for visibility changes
-
+                document.addEventListener("visibilitychange", function(evt) {
+                    outputDiv.innerHTML += "<p>Visibility state: " + document.visibilityState + "</p>";
+                })
             });
         </script>
     </body>

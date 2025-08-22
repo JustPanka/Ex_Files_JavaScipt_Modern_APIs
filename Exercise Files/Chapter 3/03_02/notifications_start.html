@@ -50,12 +50,16 @@
             window.addEventListener("load", function () {
                 document.getElementById("btnRequest").addEventListener("click", function () {
                     // TODO: Request notifications permission from the user
-
+                    Notification.requestPermission().then(function(result) {
+                        console.log("Notification permission request: ", result);
+                    })
                 })
 
                 document.getElementById("btnShow1").addEventListener("click", function () {
                     // TODO: check to make sure we have permission to show notifications
-
+                    if (Notification.permission == "granted") {
+                        var notify = new Notification("This is a basic notification");
+                    }
                 })
 
                 document.getElementById("btnShow2").addEventListener("click", function () {
@@ -67,13 +71,21 @@
                         var isPersistent = document.getElementById("notPersist").checked;
 
                         // TODO: Set up the notification options
-
+                        var notOptions = {};
+                        notOptions.body = body;
+                        notOptions.requireInteraction = isPersistent;
+                        if (useIcon) {
+                            notOptions.icon = "../images/info.png";
+                        }
 
                         // TODO: Show the notification
-
+                        var theNote = new Notification(title, notOptions);
 
                         // TODO: Handle a click on the notification to open a new page
-
+                        theNote.onclick = function(evt) {
+                            evt.target.close();
+                            window.location = "http://w3.org";
+                        }
                     }
                 })
             });

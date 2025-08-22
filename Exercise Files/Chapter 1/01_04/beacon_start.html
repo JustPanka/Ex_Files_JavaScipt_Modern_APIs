@@ -24,13 +24,13 @@
         </div>
         <script>
             // NOTE: You'll need to create your own PutsReq endpoint before running this example
-            const beaconURL = "https://putsreq.com/pYAR2uTXWOmczoOZbTdy"; // the PutsReq URL goes here
+            const beaconURL = "https://putsreq.com/VvOCMCHsI5zlFm8bJeI3"; // the PutsReq URL goes here
             function sendEvent(strEvent) {
                 if (navigator.sendBeacon) {
                     // TODO: sendBeacon returns true if the browser can schedule
                     // the request, false otherwise. It can take an ArrayBuffer,
                     // string, Blob, or FormData for the data parameter
-
+                    navigator.sendBeacon(beaconURL, strEvent);
                 }
             }
 

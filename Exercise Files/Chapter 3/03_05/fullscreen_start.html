@@ -25,12 +25,34 @@
         <script>
             // TODO: Cross-platform utility function for launching full-screen mode
             function enterFullscreen(elem) {
-
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                }
+                 if (elem.webkitRequestFullscreen) {
+                    elem.requestFullscreen();
+                }
+                 if (elem.mozRequestFullscreen) {
+                    elem.requestFullscreen();
+                }
+                 if (elem.msRequestFullscreen) {
+                    elem.requestFullscreen();
+                }
             };
 
             // TODO: Cross-platform utility function for exiting full-screen mode
             function exitFullscreen() {
-
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+                if (document.webkitExitFullscreen) {
+                    document.exitFullscreen();
+                }
+                if (document.mozCancelFullscreen) {
+                    document.exitFullscreen();
+                }
+                if (document.msExitFullscreen) {
+                    document.exitFullscreen();
+                }
             }
             // Cross-platform helper function to identify the fullscreen element
             function logFullscreenInfo() {

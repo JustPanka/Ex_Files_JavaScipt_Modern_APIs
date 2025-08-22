@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>Dialog Example</title>
-        <!-- <style type="text/css">
+        <style type="text/css">
             /* Define a CSS style for the dialog */
             dialog {
                 background-color: lightgray;
@@ -34,7 +34,7 @@
                 background-color: rgba(0, 0, 0, 0.75);
             }
 
-        </style> -->
+        </style>
         <link rel="stylesheet" href="../../style.css" />
     </head>
     <body>
@@ -63,10 +63,11 @@
                 // event handlers to show the dialog as non-modal and modal
                 document.getElementById("show1").addEventListener("click", function () {
                     // TODO: Show the dialog using the non-modal API
-
+                    document.getElementById("dialog1").show();
                 })
                 document.getElementById("show2").addEventListener("click", function () {
                     // TODO: Show the dialog using the modal API
+                    document.getElementById("dialog1").showModal();
 
                 })
 
@@ -74,12 +75,16 @@
                 document.getElementById("okBtn").addEventListener("click", function () {
                     dlg = document.getElementById("dialog1");
                     // TODO: Check to see if the dialog is in fact open, if so then close it with "OK"
-
+                    if (dlg.open) {
+                        dlg.close("OK");
+                    }
                 })
                 document.getElementById("cancelBtn").addEventListener("click", function () {
                     dlg = document.getElementById("dialog1");
                     // TODO: Check to see if the dialog is in fact open, if so then close it with "Cancel"
-
+                    if (dlg.open) {
+                        dlg.close("Cancel");
+                    }
                 })
 
                 // event listeners for the dialog itself - close and cancel

@@ -83,17 +83,28 @@
                 // TODO: LocalForage also supports multiple database instances
                 var instance1, instance2
                 document.getElementById("btnMulti").addEventListener("click", function () {
-
+                    instance1 = localforage.createInstance({
+                        "name" : "instance1"
+                    });
+                     instance2 = localforage.createInstance({
+                        "name" : "instance2"
+                    });
                 });
 
                 // TODO: Store data using the same key name into different database instances
                 document.getElementById("btnStore").addEventListener("click", function () {
-
+                    instance1.setItem("key1", "value1");
+                    instance1.setItem("key1", "value2");
                 });
 
                 // TODO: Retrieve the data from separate instances using the same key name
                 document.getElementById("btnGetData").addEventListener("click", function () {
-
+                    instance1.getItem("key1").then(function (val) {
+                        console.log("Instance1 returned: ", val);
+                    })
+                     instance2.getItem("key1").then(function (val) {
+                        console.log("Instance2 returned: ", val);
+                    })
                 });
             })
         </script>

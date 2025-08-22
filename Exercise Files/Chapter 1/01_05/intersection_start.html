@@ -94,9 +94,25 @@
         <script>
             window.addEventListener("load", function () {
                 // TODO: Create a new Observer
+                const observer = new IntersectionObserver(function (entries) {
+                    console.log(entries);
+                    if (entries[0].intersectionRatio < 0.5) {
+                        entries[0].target.className = "background0";
+                    }
+                    if (entries[0].intersectionRatio >= 0.5
+                        && entries[0].intersectionRatio < 1) {
+                        entries[0].target.className = "background50";
+                    }
+                    if (entries[0].intersectionRatio >= 1) {
+                        entries[0].target.className = "background100";
+                    }
+                },
+            {
+                "threshold": [0, 0.5, 1.0]
+            })
 
                 // TODO: Start observing the target element
-
+                observer.observe(document.getElementById('targetElem'));
             })
         </script>
     </body>

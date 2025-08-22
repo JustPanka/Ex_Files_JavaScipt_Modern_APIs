@@ -51,23 +51,33 @@
                     let key = document.getElementById("lfKey").value;
 
                     // TODO: Store the data locally
-
+                    localforage.setItem(key, val).then(function(val) {
+                        console.log("SetItem stored: ", val);
+                    })
                 });
                 document.getElementById("btnGet").addEventListener("click", function () {
                     let key = document.getElementById("lfKey").value;
 
                     // TODO: Retrieve the data
-
+                    localforage.getItem(key).then(function(val) {
+                        console.log("getItem retrieved: ", val);
+                    })
                 });
                 document.getElementById("btnDel").addEventListener("click", function () {
                     let key = document.getElementById("lfKey").value;
 
                     // TODO: Delete the stored key
-
+                     localforage.removeItem(key).then(function(val) {
+                        console.log("removeItem deleted: ", val);
+                    })
                 });
                 document.getElementById("btnList").addEventListener("click", function () {
                     // TODO: Use iterate to list all the stored data
-
+                    localforage.iterate(function(value, key, iterNum) {
+                        console.log(iterNum, [key, value]);
+                    }).then(function() {
+                        console.log("Iteration complete");
+                    })
                 });
 
                 // TODO: LocalForage also supports multiple database instances
