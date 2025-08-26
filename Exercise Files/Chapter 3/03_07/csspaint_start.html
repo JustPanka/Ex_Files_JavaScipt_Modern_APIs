@@ -9,7 +9,8 @@
                 border: 1px solid gray;
 
                 /* TODO: Use the paint API to paint the background of the box */
-
+                background-image: paint(samplepainter);
+                
                 /* TODO: Define some custom properties to use in the paint function */
 
             }
@@ -33,7 +34,7 @@
                     console.log("paintWorklet supported")
 
                     // TODO: add the paint worklet to our page
-
+                    CSS.painWorklet.addModule("csspaint_start.js");
                 }
                 else {
                     console.log("paintWorklet not supported")

@@ -5,10 +5,21 @@ if (typeof registerPaint !== 'undefined') {
 
         // TODO: fill out the paint function to do the drawing work
         paint(ctx, size, props) {
+            ctx.lineWidth = 3;
+            ctx.strokeStyle = "blue";
 
+            ctx.beginPath();
+            ctx.moveTo(0,0);
+            ctx.lineTo(size.width,size.height);
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(size.width,0);
+            ctx.lineTo(0,size.height);
+            ctx.stroke();
         }
     }
 
     // TODO: register the paint worklet for CSS
-
+    registerPaint("samplePainter", SampleCSSPaint);
 }

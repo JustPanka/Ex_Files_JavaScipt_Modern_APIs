@@ -2,12 +2,17 @@ if (typeof registerPaint !== 'undefined') {
     // define a class to implement the paint worklet
     class SampleCSSPaint {
         // TODO: declare the properties that the class has access to
-
+        static get inputProperties() {
+            return ['--cross-thickness', '--cross-color']
+        }
         
         // TODO: fill out the paint function to do the drawing work
         paint(ctx, size, props) {
-            ctx.lineWidth = 2;
-            ctx.strokeStyle = "blue";
+            let width = props.get('--cross-thickness');
+            let color = props.get('--cross-color').toString();
+
+            ctx.lineWidth = width;
+            ctx.strokeStyle = color;
 
             ctx.beginPath();
             ctx.moveTo(0,0);
